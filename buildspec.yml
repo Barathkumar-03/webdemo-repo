@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo "No build deps needed for static site"
+  build:
+    commands:
+      - echo "Preparing build artifact"
+      - rm -rf build && mkdir -p build
+      - cp -r src/* build/
+      - cp appspec.yml build/
+      - mkdir -p build/scripts
+      - cp scripts/*.sh build/scripts/
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build
