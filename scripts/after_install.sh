@@ -2,11 +2,9 @@
 set -euo pipefail
 set -x
 
-# Files are already copied to /usr/share/nginx/html by the 'files:' section in appspec.yml.
-# Just ensure ownership is OK and (re)start nginx.
-
+# Files already copied by appspec 'files:' into /usr/share/nginx/html
 sudo chown -R nginx:nginx /usr/share/nginx/html || true
-sudo restorecon -R /usr/share/nginx/html 2>/dev/null || true  # harmless if SELinux not present
+sudo restorecon -R /usr/share/nginx/html 2>/dev/null || true  # harmless if SELinux not enabled
 
 sudo systemctl restart nginx
 sleep 2
