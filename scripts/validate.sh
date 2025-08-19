@@ -1,2 +1,3 @@
-set -e
-curl -sSf http://localhost/ >/dev/null
+#!/usr/bin/env bash
+set -euo pipefail
+curl -sSf http://localhost/ > /dev/null
