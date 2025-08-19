@@ -7,10 +7,12 @@ phases:
     commands:
       - echo "Preparing build artifact"
       - rm -rf build && mkdir -p build
-      - cp -r src/* build/
+      - cp -r src/* build/ || true
       - cp appspec.yml build/
       - mkdir -p build/scripts
       - cp scripts/*.sh build/scripts/
+      - chmod +x build/scripts/*.sh || true
+      - sed -i 's/\r$//' build/scripts/*.sh || true
 artifacts:
   files:
     - '**/*'
