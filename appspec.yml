@@ -2,7 +2,8 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/webapp
+    destination: /usr/share/nginx/html
+    overwrite: true
 hooks:
   BeforeInstall:
     - location: scripts/before_install.sh
@@ -11,12 +12,8 @@ hooks:
   AfterInstall:
     - location: scripts/after_install.sh
       timeout: 300
-      runas: ec2-user
-  ApplicationStart:
-    - location: scripts/application_start.sh
-      timeout: 300
-      runas: ec2-user
+      runas: root
   ValidateService:
-    - location: scripts/validate_service.sh
+    - location: scripts/validate.sh
       timeout: 300
-      runas: ec2-user
+      runas: root
